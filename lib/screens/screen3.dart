@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './screen5.dart';
 
 class Screen3 extends StatelessWidget {
   const Screen3({super.key});
@@ -53,7 +54,13 @@ class Screen3 extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Screen5()),
+                      );
+                    },
                     child: Text('sign up',
                         style: TextStyle(fontSize: 18, color: Colors.white)),
                   ),
