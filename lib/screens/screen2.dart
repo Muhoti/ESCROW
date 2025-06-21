@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './screen3.dart';
-import './screen4.dart';
+import 'createaccount_personal.dart';
+import 'createaccount_business.dart';
 
 class Screen2 extends StatelessWidget {
   const Screen2({super.key});
@@ -65,7 +65,7 @@ class Screen2 extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Screen3()),
+                      MaterialPageRoute(builder: (context) => const CreatePersonalAccount()),
                     );
                   },
                   child: Text('Individual',
@@ -89,7 +89,7 @@ class Screen2 extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Screen4()),
+                      MaterialPageRoute(builder: (context) => const CreateBusinessAccount()),
                     );
                   },
                   child: Text('Business',

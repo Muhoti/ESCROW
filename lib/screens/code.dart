@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import './screen6.dart';
 
-class Screen5 extends StatelessWidget {
-  const Screen5({super.key});
+class Code extends StatelessWidget {
+  const Code({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,8 @@ class Screen5 extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: Icon(Icons.chevron_left, size: 32),
+                splashRadius: 24,
                 onPressed: () => Navigator.pop(context),
               ),
               SizedBox(height: 8),

@@ -1,3 +1,5 @@
+import 'package:escrow_mobile/screens/deposit_screen.dart';
+import 'package:escrow_mobile/screens/withdrawal_screen.dart';
 import 'package:flutter/material.dart';
 
 class WalletScreen extends StatelessWidget {
@@ -32,9 +34,33 @@ class WalletScreen extends StatelessWidget {
             SizedBox(height: 20),
             Row(
               children: [
-                _actionButton(icon: Icons.add, label: 'Deposit'),
+                _buildActionButton(
+                  context,
+                  icon: Icons.add_circle_outline,
+                  label: 'Deposit',
+                  color: Colors.green,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DepositScreen()),
+                    );
+                  },
+                ),
                 SizedBox(width: 16),
-                _actionButton(icon: Icons.arrow_forward, label: 'Withdraw'),
+                _buildActionButton(
+                  context,
+                  icon: Icons.remove_circle_outline,
+                  label: 'Withdraw',
+                  color: Colors.red,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const WithdrawalScreen()),
+                    );
+                  },
+                ),
               ],
             ),
             SizedBox(height: 20),
@@ -96,20 +122,30 @@ class WalletScreen extends StatelessWidget {
     );
   }
 
-  Widget _actionButton({required IconData icon, required String label}) {
+  Widget _buildActionButton(
+    BuildContext context, {
+    required IconData icon,
+    required String label,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
     return Expanded(
-      child: ElevatedButton.icon(
-        icon: Icon(icon),
-        label: Text(label),
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.grey[200],
-          foregroundColor: Colors.black,
-          padding: EdgeInsets.symmetric(vertical: 15),
-          shape: RoundedRectangleBorder(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          decoration: BoxDecoration(
+            color: color,
             borderRadius: BorderRadius.circular(12),
           ),
-          elevation: 0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, color: Colors.white),
+              SizedBox(width: 8),
+              Text(label, style: TextStyle(color: Colors.white, fontSize: 18)),
+            ],
+          ),
         ),
       ),
     );

@@ -36,7 +36,8 @@ class _Screen6State extends State<Screen6> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: Icon(Icons.chevron_left, size: 32),
+              splashRadius: 24,
               onPressed: () => Navigator.pop(context),
             ),
             SizedBox(height: 8),

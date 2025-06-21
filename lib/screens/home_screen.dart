@@ -5,6 +5,7 @@ import './wallet_screen.dart';
 import './profile_screen.dart';
 import './notifications_screen.dart';
 import './settings_screen.dart';
+import './create_transaction_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -151,9 +152,20 @@ class HomeScreenBody extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _actionButton('Create\nTransaction', true),
-                  _actionButton('Join\nTransaction', false),
-                  _actionButton('Disputed\nTransactions', false),
+                  _actionButton(
+                    'Create\nTransaction',
+                    true,
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const CreateTransactionScreen()),
+                      );
+                    },
+                  ),
+                  _actionButton('Join\nTransaction', false, () {}),
+                  _actionButton('Disputed\nTransactions', false, () {}),
                 ],
               ),
               const SizedBox(height: 28),
@@ -208,7 +220,7 @@ class HomeScreenBody extends StatelessWidget {
     );
   }
 
-  Widget _actionButton(String label, bool selected) {
+  Widget _actionButton(String label, bool selected, VoidCallback onPressed) {
     return Expanded(
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -222,7 +234,7 @@ class HomeScreenBody extends StatelessWidget {
             ),
             elevation: 0,
           ),
-          onPressed: () {},
+          onPressed: onPressed,
           child: Text(
             label,
             textAlign: TextAlign.center,

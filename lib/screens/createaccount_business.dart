@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import './screen5.dart';
+import 'code.dart';
 
-class Screen4 extends StatelessWidget {
-  const Screen4({super.key});
+class CreateBusinessAccount extends StatelessWidget {
+  const CreateBusinessAccount({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,8 @@ class Screen4 extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 IconButton(
-                  icon: Icon(Icons.arrow_back),
+                  icon: Icon(Icons.chevron_left, size: 32),
+                  splashRadius: 24,
                   onPressed: () => Navigator.pop(context),
                 ),
                 SizedBox(height: 8),
@@ -54,7 +55,7 @@ class Screen4 extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Screen5()),
+                            builder: (context) => const Code()),
                       );
                     },
                     child: Text('Sign up',

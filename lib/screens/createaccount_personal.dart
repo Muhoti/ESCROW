@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import './screen5.dart';
+import 'code.dart';
 
-class Screen3 extends StatelessWidget {
-  const Screen3({super.key});
+class CreatePersonalAccount extends StatelessWidget {
+  const CreatePersonalAccount({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +14,14 @@ class Screen3 extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () => Navigator.pop(context),
+                Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.chevron_left, size: 32),
+                      splashRadius: 24,
+                      onPressed: () => Navigator.pop(context),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 8),
                 Text(
@@ -58,7 +63,7 @@ class Screen3 extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Screen5()),
+                            builder: (context) => const Code()),
                       );
                     },
                     child: Text('sign up',
