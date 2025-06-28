@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/components.dart';
 import './screen2.dart';
 
 class LandingPage extends StatelessWidget {
@@ -13,105 +14,56 @@ class LandingPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 24),
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(
-                    width: 220,
-                    height: 220,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.blue, width: 2),
-                    ),
+              const SizedBox(height: 24),
+              HeroBanner(
+                imagePath: 'assets/images/escrow_image.png',
+                overlayWidget: Positioned(
+                  left: 20,
+                  bottom: 20,
+                  child: CustomCircleAvatar(
+                    icon: Icons.check_circle,
+                    iconColor: Colors.green,
                   ),
-                  ClipOval(
-                    child: Image.asset(
-                      'assets/images/escrow_image.png',
-                      width: 180,
-                      height: 180,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Positioned(
-                    left: 20,
-                    bottom: 20,
-                    child: CircleAvatar(
-                      radius: 20,
-                      backgroundColor: Colors.white,
-                      child: Icon(Icons.check_circle,
-                          color: Colors.green, size: 32),
-                    ),
-                  ),
-                  Positioned(top: 10, left: 10, child: _dot()),
-                  Positioned(top: 10, right: 10, child: _dot()),
-                  Positioned(bottom: 10, left: 10, child: _dot()),
-                  Positioned(bottom: 10, right: 10, child: _dot()),
+                ),
+                decorativeElements: [
+                  const Positioned(top: 10, left: 10, child: DecorativeDot()),
+                  const Positioned(top: 10, right: 10, child: DecorativeDot()),
+                  const Positioned(
+                      bottom: 10, left: 10, child: DecorativeDot()),
+                  const Positioned(
+                      bottom: 10, right: 10, child: DecorativeDot()),
                 ],
               ),
-              SizedBox(height: 40),
-              Text(
+              const SizedBox(height: 40),
+              const Text(
                 'Buy anything safely\nanytime, anywhere',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 16),
-              Text(
+              const SizedBox(height: 16),
+              const Text(
                 'Buy anything safely online with confidence, protect yourself from fraud',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16, color: Colors.black54),
               ),
-              SizedBox(height: 48),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    padding: EdgeInsets.symmetric(vertical: 18),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: Text('Get Started',
-                      style: TextStyle(fontSize: 18, color: Colors.white)),
-                ),
+              const SizedBox(height: 48),
+              CustomElevatedButton(
+                text: 'Get Started',
+                onPressed: () {},
               ),
-              SizedBox(height: 16),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 18),
-                    side: BorderSide(color: Colors.blue, width: 2),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Screen2()),
-                    );
-                  },
-                  child: Text('Log in to your account',
-                      style: TextStyle(fontSize: 18, color: Colors.blue)),
-                ),
+              const SizedBox(height: 16),
+              CustomOutlinedButton(
+                text: 'Log in to your account',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Screen2()),
+                  );
+                },
               ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _dot() {
-    return Container(
-      width: 20,
-      height: 20,
-      decoration: BoxDecoration(
-        color: Colors.grey[200],
-        shape: BoxShape.circle,
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/components.dart';
 import './transactions_screen.dart';
 import './stores_screen.dart';
 import './wallet_screen.dart';
@@ -115,47 +116,18 @@ class HomeScreenBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 8),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(18),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF6EC1FF),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                  children: [
-                    const Text('Balance',
-                        style: TextStyle(color: Colors.white70, fontSize: 20)),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 6),
-                          color: Colors.white,
-                          child: const Text(
-                            'KSh. 157,325.67',
-                            style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        const Icon(Icons.remove_red_eye,
-                            color: Colors.white, size: 28),
-                      ],
-                    ),
-                  ],
-                ),
+              BalanceCard(
+                title: 'Balance',
+                amount: 'KSh. 157,325.67',
               ),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _actionButton(
-                    'Create\nTransaction',
-                    true,
-                    () {
+                  ActionButton(
+                    label: 'Create\nTransaction',
+                    isSelected: true,
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -163,18 +135,27 @@ class HomeScreenBody extends StatelessWidget {
                                 const CreateTransactionScreen()),
                       );
                     },
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
                   ),
-                  _actionButton('Join\nTransaction', false, () {}),
-                  _actionButton('Disputed\nTransactions', false, () {}),
+                  ActionButton(
+                    label: 'Join\nTransaction',
+                    isSelected: false,
+                    onPressed: () {},
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                  ),
+                  ActionButton(
+                    label: 'Disputed\nTransactions',
+                    isSelected: false,
+                    onPressed: () {},
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                  ),
                 ],
               ),
               const SizedBox(height: 28),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('History',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  const HeadingText('History', textAlign: TextAlign.left),
                   TextButton(
                     onPressed: () {},
                     child: const Text('See All',
@@ -182,7 +163,7 @@ class HomeScreenBody extends StatelessWidget {
                   ),
                 ],
               ),
-              _historyCard(
+              HistoryCard(
                 leading: CircleAvatar(
                     radius: 20,
                     backgroundColor: Colors.grey[300],
@@ -194,21 +175,21 @@ class HomeScreenBody extends StatelessWidget {
                 status: 'Active',
                 statusColor: Colors.blue,
               ),
-              _historyCard(
+              HistoryCard(
                 leading: Image.asset('assets/images/icons/withdraw.png',
                     width: 32, height: 32),
                 title: 'Withdrawal',
                 subtitle: '25/08/2024 08:00AM',
                 amount: 'KSh. 27, 002',
               ),
-              _historyCard(
+              HistoryCard(
                 leading: Image.asset('assets/images/icons/deposit.png',
                     width: 32, height: 32),
                 title: 'Deposit',
                 subtitle: '02/03/2023 05:30PM',
                 amount: 'KSh. 12, 000',
               ),
-              _historyCard(
+              HistoryCard(
                 leading: Image.asset('assets/images/icons/deposit.png',
                     width: 32, height: 32),
                 title: 'Client - Deposit',
@@ -219,91 +200,6 @@ class HomeScreenBody extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _actionButton(String label, bool selected, VoidCallback onPressed) {
-    return Expanded(
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 4),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: selected ? Colors.blue : Colors.grey[200],
-            foregroundColor: selected ? Colors.white : Colors.black,
-            padding: const EdgeInsets.symmetric(vertical: 18),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            elevation: 0,
-          ),
-          onPressed: onPressed,
-          child: Text(
-            label,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _historyCard(
-      {required Widget leading,
-      required String title,
-      required String subtitle,
-      required String amount,
-      String? status,
-      Color? statusColor}) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 6),
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.black12),
-      ),
-      child: Row(
-        children: [
-          leading,
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title,
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
-                const SizedBox(height: 2),
-                Text(subtitle,
-                    style:
-                        const TextStyle(fontSize: 13, color: Colors.black54)),
-              ],
-            ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(amount, style: const TextStyle(fontWeight: FontWeight.bold)),
-              if (status != null)
-                Container(
-                  margin: const EdgeInsets.only(top: 4),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: statusColor ?? Colors.grey[300],
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    status,
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-            ],
-          ),
-        ],
       ),
     );
   }

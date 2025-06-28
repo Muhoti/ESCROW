@@ -1,4 +1,6 @@
+import 'package:escrow_mobile/components/selection_button.dart';
 import 'package:flutter/material.dart';
+import '../components/components.dart';
 import 'createaccount_personal.dart';
 import 'createaccount_business.dart';
 
@@ -14,7 +16,7 @@ class Screen2 extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
               Center(
                 child: Column(
                   children: [
@@ -24,7 +26,7 @@ class Screen2 extends StatelessWidget {
                       height: 120,
                       fit: BoxFit.contain,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                       'TRUST HOLD',
                       style: TextStyle(
@@ -45,56 +47,37 @@ class Screen2 extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 60),
-              Text(
-                'Are you creating a',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              const SizedBox(height: 60),
+              const HeadingText(
+                'CREATE ACCOUNT',
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 40),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 18),
-                    side: BorderSide(color: Colors.blue, width: 2),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const CreatePersonalAccount()),
-                    );
-                  },
-                  child: Text('Individual',
-                      style: TextStyle(fontSize: 18, color: Colors.blue)),
-                ),
+              const SizedBox(height: 40),
+              SelectionButton(
+                text: 'Individual',
+                isPrimary: false,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CreatePersonalAccount()),
+                  );
+                },
               ),
-              SizedBox(height: 24),
-              Text('or',
+              const SizedBox(height: 24),
+              const Text('or',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    padding: EdgeInsets.symmetric(vertical: 18),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const CreateBusinessAccount()),
-                    );
-                  },
-                  child: Text('Business',
-                      style: TextStyle(fontSize: 18, color: Colors.white)),
-                ),
+              const SizedBox(height: 24),
+              SelectionButton(
+                text: 'Business',
+                isPrimary: true,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CreateBusinessAccount()),
+                  );
+                },
               ),
             ],
           ),

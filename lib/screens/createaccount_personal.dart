@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/components.dart';
 import 'code.dart';
 
 class CreatePersonalAccount extends StatelessWidget {
@@ -17,100 +18,73 @@ class CreatePersonalAccount extends StatelessWidget {
                 Row(
                   children: [
                     IconButton(
-                      icon: Icon(Icons.chevron_left, size: 32),
+                      icon: const Icon(Icons.chevron_left, size: 32),
                       splashRadius: 24,
                       onPressed: () => Navigator.pop(context),
                     ),
                   ],
                 ),
-                SizedBox(height: 8),
-                Text(
-                  'Create Account',
-                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 12),
-                Text(
+                const SizedBox(height: 8),
+                const HeadingText('Create Account'),
+                const SizedBox(height: 12),
+                const BodyText(
                   'Please make sure the details you provide is the same as on your National ID in order to verify your identity.',
-                  style: TextStyle(fontSize: 16, color: Colors.black87),
                   textAlign: TextAlign.left,
                 ),
-                SizedBox(height: 24),
-                _buildTextField('First Name'),
-                SizedBox(height: 16),
-                _buildTextField('Second Name'),
-                SizedBox(height: 16),
-                _buildTextField('Email'),
-                SizedBox(height: 16),
-                _buildTextField('Phone Number'),
-                SizedBox(height: 16),
-                _buildTextField('Date of Birth'),
-                SizedBox(height: 16),
-                _buildTextField('Gender'),
-                SizedBox(height: 16),
-                _buildTextField('Password', isPassword: true),
-                SizedBox(height: 32),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      padding: EdgeInsets.symmetric(vertical: 18),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Code()),
-                      );
-                    },
-                    child: Text('sign up',
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                  ),
+                const SizedBox(height: 24),
+                const CustomTextField(labelText: 'First Name'),
+                const SizedBox(height: 16),
+                const CustomTextField(labelText: 'Second Name'),
+                const SizedBox(height: 16),
+                const CustomTextField(
+                  labelText: 'Email',
+                  keyboardType: TextInputType.emailAddress,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 16),
+                const CustomTextField(
+                  labelText: 'Phone Number',
+                  keyboardType: TextInputType.phone,
+                ),
+                const SizedBox(height: 16),
+                const CustomTextField(labelText: 'Date of Birth'),
+                const SizedBox(height: 16),
+                const CustomTextField(labelText: 'Gender'),
+                const SizedBox(height: 16),
+                const CustomTextField(
+                  labelText: 'Password',
+                  isPassword: true,
+                ),
+                const SizedBox(height: 32),
+                SelectionButton(
+                  text: 'sign up',
+                  isPrimary: true,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Code()),
+                    );
+                  },
+                ),
+                const SizedBox(height: 20),
                 Center(
-                  child: GestureDetector(
+                  child: LinkText(
+                    'Already have an account? Login',
                     onTap: () {},
-                    child: Text(
-                      'Already have an account? Login',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Center(
-                  child: Text(
+                  child: CustomText(
                     "By clicking 'Sign up' you agree to TrustHold's\nTerms of Use & Privacy policy",
-                    style: TextStyle(fontSize: 13, color: Colors.black54),
+                    style: AppTextStyles.caption,
                     textAlign: TextAlign.center,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildTextField(String label, {bool isPassword = false}) {
-    return TextField(
-      obscureText: isPassword,
-      decoration: InputDecoration(
-        labelText: label,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        suffixIcon: isPassword ? Icon(Icons.visibility_off) : null,
       ),
     );
   }
