@@ -47,7 +47,7 @@ class TransactionCard extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 12.0, vertical: 20.0),
+                      horizontal: 12.0, vertical: 10.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -64,8 +64,9 @@ class TransactionCard extends StatelessWidget {
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+                            SizedBox(height: 18), // Space for the banner
                             Text(
                               title,
                               style: const TextStyle(
@@ -73,6 +74,8 @@ class TransactionCard extends StatelessWidget {
                                 fontSize: 14.5,
                                 color: Color(0xFF1A202C),
                               ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(height: 5),
                             Text(
@@ -81,24 +84,23 @@ class TransactionCard extends StatelessWidget {
                                 color: Color(0xFF718096),
                                 fontSize: 13.5,
                               ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ],
                         ),
                       ),
                       const SizedBox(width: 12),
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 4.0),
-                            child: Icon(
-                              Icons.balance,
-                              color: const Color(0xFF718096),
-                              size: 22,
-                            ),
+                          Icon(
+                            Icons.balance,
+                            color: const Color(0xFF718096),
+                            size: 22,
                           ),
-                          const SizedBox(height: 12),
+                          const SizedBox(height: 8),
                           ElevatedButton(
                             onPressed: onDetailsTap,
                             style: ElevatedButton.styleFrom(
@@ -108,6 +110,8 @@ class TransactionCard extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 24, vertical: 0),
                               minimumSize: const Size(0, 32),
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              visualDensity: VisualDensity.compact,
                             ),
                             child: const Text(
                               'Details',
