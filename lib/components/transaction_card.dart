@@ -119,18 +119,34 @@ class TransactionCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Role indicator
+                // Curved Role Banner (centered, not full width)
                 Positioned(
                   top: 0,
                   left: 0,
                   right: 0,
-                  child: Container(
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: roleColor,
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(16),
-                        topRight: Radius.circular(16),
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: SizedBox(
+                      width: 140,
+                      height: 16,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          CustomPaint(
+                            size: const Size(140, 16),
+                            painter: RoleBannerPainter(color: roleColor),
+                          ),
+                          Center(
+                            child: Text(
+                              role,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -142,4 +158,25 @@ class TransactionCard extends StatelessWidget {
       ),
     );
   }
+}
+
+class RoleBannerPainter extends CustomPainter {
+  final Color color;
+  RoleBannerPainter({required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = color;
+    final path = Path();
+
+    path.moveTo(0, 0);
+    path.quadraticBezierTo(size.width / 2, size.height * 2.2, size.width, 0);
+    path.close();
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant RoleBannerPainter oldDelegate) =>
+      color != oldDelegate.color;
 }

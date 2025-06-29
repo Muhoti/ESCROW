@@ -121,46 +121,65 @@ class HomeScreenBody extends StatelessWidget {
                 amount: 'KSh. 157,325.67',
               ),
               const SizedBox(height: 20),
-              Row(
-                children: [
-                  ActionButton(
-                    label: 'Create\nTransaction',
-                    isSelected: true,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const CreateTransactionScreen()),
-                      );
-                    },
-                    margin: const EdgeInsets.only(right: 8),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 16,
-                      horizontal: 8,
+              Container(
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ActionButton(
+                        label: 'Create\nTransaction',
+                        isSelected: true,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const CreateTransactionScreen()),
+                          );
+                        },
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16,
+                        ),
+                      ),
                     ),
-                  ),
-                  ActionButton(
-                    label: 'Join\nTransaction',
-                    isSelected: false,
-                    onPressed: () {},
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 16,
-                      horizontal: 8,
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: ActionButton(
+                        label: 'Join\nTransaction',
+                        isSelected: false,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const CreateTransactionScreen()),
+                          );
+                        },
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16,
+                        ),
+                      ),
                     ),
-                  ),
-                  ActionButton(
-                    label: 'Disputed\nTransactions',
-                    isSelected: false,
-                    onPressed: () {},
-                    margin: const EdgeInsets.only(left: 8),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 16,
-                      horizontal: 8,
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: ActionButton(
+                        label: 'Disputed\nTransactions',
+                        isSelected: false,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const CreateTransactionScreen()),
+                          );
+                        },
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               const SizedBox(height: 28),
               Row(

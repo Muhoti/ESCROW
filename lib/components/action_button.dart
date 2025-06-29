@@ -12,6 +12,7 @@ class ActionButton extends StatelessWidget {
   final double? fontSize;
   final FontWeight? fontWeight;
   final EdgeInsetsGeometry? padding;
+  final int? flex;
 
   const ActionButton({
     super.key,
@@ -26,6 +27,7 @@ class ActionButton extends StatelessWidget {
     this.fontSize,
     this.fontWeight,
     this.padding,
+    this.flex,
   });
 
   @override
@@ -81,7 +83,10 @@ class ActionButton extends StatelessWidget {
     );
 
     if (isExpanded) {
-      button = Expanded(child: button);
+      button = Flexible(
+        flex: flex ?? 1,
+        child: button,
+      );
     }
 
     if (margin != null) {
