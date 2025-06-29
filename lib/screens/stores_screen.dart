@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/store_card.dart';
 
 class StoresScreen extends StatelessWidget {
   const StoresScreen({super.key});
@@ -7,77 +8,163 @@ class StoresScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: TextField(
-          decoration: InputDecoration(
-            hintText: 'Search for a store',
-            prefixIcon: Icon(Icons.search, color: Colors.grey),
-            filled: true,
-            fillColor: Colors.grey[200],
-            contentPadding: EdgeInsets.symmetric(vertical: 0),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: BorderSide.none,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(64),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                children: [
+                  const SizedBox(width: 8),
+                  const Icon(Icons.search, color: Colors.grey),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: TextField(
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Search for a store',
+                        isDense: true,
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
       body: Column(
         children: [
-          _buildTabs(),
+          _buildTabs(context),
+          Container(
+            height: 1,
+            color: const Color(0xFFE6E6E6),
+            margin: const EdgeInsets.only(bottom: 2),
+          ),
           Expanded(
             child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
               children: [
-                _buildStoreCard(
-                  icon: Icons.phone_iphone,
+                StoreCard(
+                  leadingImage: 'assets/images/icons/phone.png',
                   name: 'Jamo Electronic Shop',
-                  category: 'We sell all kinds of Electricals',
+                  description: 'We sell all kinds of Electricals',
                   delivery: 'We deliver country-wide',
                   address: '2nd Flor, shop 205, Majiwa building, Moi Avenue',
+                  iconPaths: [
+                    'assets/images/icons/tiktok.png',
+                    'assets/images/icons/whatsapp_business.png',
+                    'assets/images/icons/grid.png',
+                    'assets/images/icons/call.png',
+                    'assets/images/icons/location.png',
+                  ],
+                  onFollow: () {},
                 ),
-                _buildStoreCard(
-                  icon: Icons.shopping_bag_outlined,
+                StoreCard(
+                  leadingImage: 'assets/images/icons/dress.png',
                   name: 'Eliza Closet',
-                  category: 'Your one online store for thrifted mtumba',
+                  description: 'Your one online store for thrifted mtumba',
                   delivery: 'We deliver country-wide',
                   address: 'We operate online, no physical shop',
+                  iconPaths: [
+                    'assets/images/icons/tiktok.png',
+                    'assets/images/icons/whatsapp_business.png',
+                    'assets/images/icons/grid.png',
+                    'assets/images/icons/call.png',
+                    'assets/images/icons/location.png',
+                  ],
+                  onFollow: () {},
                 ),
-                _buildStoreCard(
-                  icon: Icons.directions_car_filled,
+                StoreCard(
+                  leadingImage: 'assets/images/icons/car.png',
                   name: 'Elphas Auto Garage',
-                  category: 'We sell all kinds of Electricals',
+                  description: 'We sell all kinds of Electricals',
                   delivery: 'We deliver country-wide',
-                  address: 'Kiambu road, next to Thindigua Ridges',
+                  address: 'Kiambu Road, next to Thindigua Ridges',
+                  iconPaths: [
+                    'assets/images/icons/tiktok.png',
+                    'assets/images/icons/whatsapp_business.png',
+                    'assets/images/icons/grid.png',
+                    'assets/images/icons/call.png',
+                    'assets/images/icons/location.png',
+                  ],
+                  onFollow: () {},
+                ),
+                StoreCard(
+                  leadingImage: 'assets/images/icons/house.png',
+                  name: 'Muga Estate Agents',
+                  description: 'We help you get a house in any neighbourhood',
+                  delivery: 'We also sell properties -',
+                  address: '2nd Flor, shop 205, Majiwa building, Moi Avenue',
+                  iconPaths: [
+                    'assets/images/icons/tiktok.png',
+                    'assets/images/icons/whatsapp_business.png',
+                    'assets/images/icons/grid.png',
+                    'assets/images/icons/call.png',
+                    'assets/images/icons/location.png',
+                  ],
+                  onFollow: () {},
+                ),
+                StoreCard(
+                  leadingImage: 'assets/images/icons/shoppingcart.png',
+                  name: 'Maduri General supplies',
+                  description: 'We sell all kind of household items',
+                  delivery: 'We deliver country-wide',
+                  address: 'Kamukunji, Business Centre, Kamukunji',
+                  iconPaths: [
+                    'assets/images/icons/tiktok.png',
+                    'assets/images/icons/whatsapp_business.png',
+                    'assets/images/icons/grid.png',
+                    'assets/images/icons/call.png',
+                    'assets/images/icons/location.png',
+                  ],
+                  onFollow: () {},
                 ),
               ],
             ),
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.black,
-        child: Icon(Icons.add, color: Colors.white),
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(bottom: 24),
+        child: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Colors.black,
+          elevation: 0,
+          child: Image.asset('assets/images/icons/add.png',
+              width: 28, height: 28, color: Colors.white),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
-  Widget _buildTabs() {
+  Widget _buildTabs(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8, bottom: 8),
       child: Row(
         children: [
-          BackButton(),
+          IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new,
+                size: 22, color: Colors.black),
+            splashRadius: 20,
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          const SizedBox(width: 8),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _tabItem('Individual', true),
-                SizedBox(width: 20),
+                const SizedBox(width: 32),
                 _tabItem('Business', false),
               ],
             ),
@@ -94,83 +181,6 @@ class StoresScreen extends StatelessWidget {
         fontSize: 18,
         fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
         color: isSelected ? Colors.black : Colors.grey,
-        decoration: isSelected ? TextDecoration.underline : TextDecoration.none,
-      ),
-    );
-  }
-
-  Widget _buildStoreCard({
-    required IconData icon,
-    required String name,
-    required String category,
-    required String delivery,
-    required String address,
-  }) {
-    return Card(
-      margin: EdgeInsets.symmetric(vertical: 8),
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Icon(icon, size: 40, color: Colors.blue[800]),
-                SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(name,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16)),
-                      Text(category,
-                          style:
-                              TextStyle(color: Colors.grey[600], fontSize: 13)),
-                      Text(delivery,
-                          style:
-                              TextStyle(color: Colors.grey[600], fontSize: 13)),
-                      Text(address,
-                          style:
-                              TextStyle(color: Colors.grey[600], fontSize: 13)),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.music_note, color: Colors.black),
-                    SizedBox(width: 8),
-                    Icon(Icons.chat, color: Colors.green),
-                    SizedBox(width: 8),
-                    Icon(Icons.language, color: Colors.blue),
-                    SizedBox(width: 8),
-                    Icon(Icons.phone, color: Colors.black),
-                    SizedBox(width: 8),
-                    Icon(Icons.location_on, color: Colors.red),
-                  ],
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text('Follow'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ],
-        ),
       ),
     );
   }

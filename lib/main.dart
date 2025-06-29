@@ -1,3 +1,4 @@
+import 'package:escrow_mobile/screens/stores_screen.dart';
 import 'package:flutter/material.dart';
 import './screens/landing_page.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const LandingPage(),
+      home: const StoresScreen(),
     );
   }
 }
