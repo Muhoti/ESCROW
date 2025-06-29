@@ -8,47 +8,86 @@ class StoresScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(64),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            child: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Row(
-                children: [
-                  const SizedBox(width: 8),
-                  const Icon(Icons.search, color: Colors.grey),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: TextField(
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Search for a store',
-                        isDense: true,
-                        contentPadding: EdgeInsets.zero,
-                      ),
-                      style: const TextStyle(fontSize: 16),
+      body: Column(
+        children: [
+          // Top grey container with search bar
+          Container(
+            color: const Color(0xFFD9D9D9),
+            width: double.infinity,
+            padding:
+                const EdgeInsets.only(top: 24, left: 0, right: 0, bottom: 12),
+            child: Column(
+              children: [
+                const SizedBox(height: 24),
+                Center(
+                  child: Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 12),
+                        const Icon(Icons.search, color: Colors.grey, size: 22),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: TextField(
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Search for a store',
+                              isDense: true,
+                              contentPadding: EdgeInsets.zero,
+                            ),
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
+                ),
+              ],
+            ),
+          ),
+          // Lower white container with tabs
+          Container(
+            color: Colors.white,
+            width: double.infinity,
+            padding:
+                const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 0),
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back_ios_new,
+                        size: 22, color: Colors.black),
+                    splashRadius: 20,
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _tabItem('Individual', true),
+                        const SizedBox(width: 32),
+                        _tabItem('Business', false),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 48), // To balance the back arrow
                 ],
               ),
             ),
           ),
-        ),
-      ),
-      body: Column(
-        children: [
-          _buildTabs(context),
           Container(
             height: 1,
             color: const Color(0xFFE6E6E6),
             margin: const EdgeInsets.only(bottom: 2),
           ),
+          // List
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
@@ -147,41 +186,29 @@ class StoresScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTabs(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8, bottom: 8),
-      child: Row(
-        children: [
-          IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                size: 22, color: Colors.black),
-            splashRadius: 20,
-            onPressed: () => Navigator.of(context).pop(),
+  Widget _tabItem(String text, bool isSelected) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          text,
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+            color: isSelected ? Colors.black : Colors.grey,
           ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _tabItem('Individual', true),
-                const SizedBox(width: 32),
-                _tabItem('Business', false),
-              ],
+        ),
+        if (isSelected)
+          Container(
+            margin: const EdgeInsets.only(top: 2),
+            height: 3,
+            width: 32,
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(2),
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _tabItem(String text, bool isSelected) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontSize: 18,
-        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-        color: isSelected ? Colors.black : Colors.grey,
-      ),
+      ],
     );
   }
 }
