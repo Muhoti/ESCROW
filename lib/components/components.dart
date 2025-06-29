@@ -15,3 +15,4 @@ export 'wallet_action_button.dart';
 export 'funds_card.dart';
 export 'custom_text.dart';
 export 'selection_button.dart';
+export 'compact_button.dart';

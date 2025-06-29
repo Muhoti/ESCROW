@@ -1,3 +1,4 @@
+import 'package:escrow_mobile/components/components.dart';
 import 'package:flutter/material.dart';
 import './login_page.dart';
 
@@ -36,59 +37,49 @@ class _Screen6State extends State<Screen6> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             IconButton(
-              icon: Icon(Icons.chevron_left, size: 32),
+              icon: const Icon(Icons.chevron_left, size: 32),
               splashRadius: 24,
               onPressed: () => Navigator.pop(context),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Create PIN',
                     style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 16),
-                  Text(
+                  const SizedBox(height: 16),
+                  const Text(
                     'Create a 4 - digit PIN to secure your account',
                     style: TextStyle(fontSize: 16, color: Colors.black87),
                     textAlign: TextAlign.left,
                   ),
-                  SizedBox(height: 32),
+                  const SizedBox(height: 32),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: List.generate(4, (i) => _pinBox(i)),
                   ),
-                  SizedBox(height: 32),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        padding: EdgeInsets.symmetric(vertical: 18),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      onPressed: pin.every((d) => d.isNotEmpty)
-                          ? () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const LoginPage()),
-                              );
-                            }
-                          : null,
-                      child: Text('Create PIN',
-                          style: TextStyle(fontSize: 18, color: Colors.white)),
-                    ),
+                  const SizedBox(height: 32),
+                  SelectionButton(
+                    text: 'Create PIN',
+                    isPrimary: true,
+                    onPressed: pin.every((d) => d.isNotEmpty)
+                        ? () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()),
+                            );
+                          }
+                        : null,
                   ),
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             _buildKeypad(),
           ],
         ),
@@ -111,7 +102,7 @@ class _Screen6State extends State<Screen6> {
       ),
       child: Text(
         pin[i],
-        style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -125,7 +116,7 @@ class _Screen6State extends State<Screen6> {
     ];
     return Container(
       color: Colors.grey[100],
-      padding: EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
         children: keys.map((row) {
           return Row(
@@ -150,8 +141,8 @@ class _Screen6State extends State<Screen6> {
                     onPressed: () => _onKeyTap(key),
                     child: Text(
                       key,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w400),
                     ),
                   ),
                 ),

@@ -43,8 +43,9 @@ class _LoginPageState extends State<LoginPage> {
                   isPassword: true,
                 ),
                 const SizedBox(height: 32),
-                CustomElevatedButton(
+                SelectionButton(
                   text: 'Login',
+                  isPrimary: true,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -61,9 +62,11 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                CustomOutlinedButton(
+                SelectionButton(
                   text: 'Biometric Login',
+                  isPrimary: false,
                   onPressed: () {},
+                  
                 ),
                 const SizedBox(height: 32),
               ],
