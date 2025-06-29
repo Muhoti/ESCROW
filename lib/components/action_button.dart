@@ -11,6 +11,7 @@ class ActionButton extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final double? fontSize;
   final FontWeight? fontWeight;
+  final EdgeInsetsGeometry? padding;
 
   const ActionButton({
     super.key,
@@ -24,6 +25,7 @@ class ActionButton extends StatelessWidget {
     this.margin,
     this.fontSize,
     this.fontWeight,
+    this.padding,
   });
 
   @override
@@ -34,7 +36,11 @@ class ActionButton extends StatelessWidget {
             backgroundColor ?? (isSelected ? Colors.blue : Colors.grey[200]),
         foregroundColor:
             textColor ?? (isSelected ? Colors.white : Colors.black),
-        padding: const EdgeInsets.symmetric(vertical: 18),
+        padding: padding ??
+            const EdgeInsets.symmetric(
+              vertical: 18,
+              horizontal: 12,
+            ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -44,26 +50,32 @@ class ActionButton extends StatelessWidget {
       child: icon != null
           ? Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(icon,
                     color: textColor ??
                         (isSelected ? Colors.white : Colors.black)),
                 const SizedBox(width: 8),
-                Text(
-                  label,
-                  style: TextStyle(
-                    fontSize: fontSize ?? 18,
-                    fontWeight: fontWeight ?? FontWeight.w600,
+                Flexible(
+                  child: Text(
+                    label,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: fontSize ?? 18,
+                      fontWeight: fontWeight ?? FontWeight.w600,
+                    ),
                   ),
                 ),
               ],
             )
-          : Text(
-              label,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: fontSize ?? 15,
-                fontWeight: fontWeight ?? FontWeight.w600,
+          : Flexible(
+              child: Text(
+                label,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: fontSize ?? 15,
+                  fontWeight: fontWeight ?? FontWeight.w600,
+                ),
               ),
             ),
     );

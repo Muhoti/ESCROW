@@ -122,7 +122,6 @@ class HomeScreenBody extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ActionButton(
                     label: 'Create\nTransaction',
@@ -135,19 +134,31 @@ class HomeScreenBody extends StatelessWidget {
                                 const CreateTransactionScreen()),
                       );
                     },
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    margin: const EdgeInsets.only(right: 8),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 16,
+                      horizontal: 8,
+                    ),
                   ),
                   ActionButton(
                     label: 'Join\nTransaction',
                     isSelected: false,
                     onPressed: () {},
                     margin: const EdgeInsets.symmetric(horizontal: 4),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 16,
+                      horizontal: 8,
+                    ),
                   ),
                   ActionButton(
                     label: 'Disputed\nTransactions',
                     isSelected: false,
                     onPressed: () {},
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    margin: const EdgeInsets.only(left: 8),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 16,
+                      horizontal: 8,
+                    ),
                   ),
                 ],
               ),
