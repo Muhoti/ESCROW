@@ -78,6 +78,8 @@ class StoreCard extends StatelessWidget {
                                 fontSize: 12,
                                 color: Color(0xFF8B8B8B),
                               ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                             Text(
                               delivery,
@@ -86,6 +88,8 @@ class StoreCard extends StatelessWidget {
                                 fontSize: 12,
                                 color: Color(0xFF8B8B8B),
                               ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                             Text(
                               address,
@@ -94,6 +98,8 @@ class StoreCard extends StatelessWidget {
                                 fontSize: 12,
                                 color: Color(0xFF8B8B8B),
                               ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ],
                         ),

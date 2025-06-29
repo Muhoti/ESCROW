@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import '../components/store_card.dart';
 
-class StoresScreen extends StatelessWidget {
+class StoresScreen extends StatefulWidget {
   const StoresScreen({super.key});
+
+  @override
+  State<StoresScreen> createState() => _StoresScreenState();
+}
+
+class _StoresScreenState extends State<StoresScreen> {
+  int selectedTabIndex = 0; // 0 = Individual, 1 = Business
 
   @override
   Widget build(BuildContext context) {
@@ -71,9 +78,15 @@ class StoresScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        _tabItem('Individual', true),
+                        GestureDetector(
+                          onTap: () => setState(() => selectedTabIndex = 0),
+                          child: _tabItem('Individual', selectedTabIndex == 0),
+                        ),
                         const SizedBox(width: 32),
-                        _tabItem('Business', false),
+                        GestureDetector(
+                          onTap: () => setState(() => selectedTabIndex = 1),
+                          child: _tabItem('Business', selectedTabIndex == 1),
+                        ),
                       ],
                     ),
                   ),
@@ -91,97 +104,130 @@ class StoresScreen extends StatelessWidget {
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
-              children: [
-                StoreCard(
-                  leadingImage: 'assets/images/icons/phone.png',
-                  name: 'Jamo Electronic Shop',
-                  description: 'We sell all kinds of Electricals',
-                  delivery: 'We deliver country-wide',
-                  address: '2nd Flor, shop 205, Majiwa building, Moi Avenue',
-                  iconPaths: [
-                    'assets/images/icons/tiktok.png',
-                    'assets/images/icons/whatsapp_business.png',
-                    'assets/images/icons/grid.png',
-                    'assets/images/icons/call.png',
-                    'assets/images/icons/location.png',
-                  ],
-                  onFollow: () {},
-                ),
-                StoreCard(
-                  leadingImage: 'assets/images/icons/dress.png',
-                  name: 'Eliza Closet',
-                  description: 'Your one online store for thrifted mtumba',
-                  delivery: 'We deliver country-wide',
-                  address: 'We operate online, no physical shop',
-                  iconPaths: [
-                    'assets/images/icons/tiktok.png',
-                    'assets/images/icons/whatsapp_business.png',
-                    'assets/images/icons/grid.png',
-                    'assets/images/icons/call.png',
-                    'assets/images/icons/location.png',
-                  ],
-                  onFollow: () {},
-                ),
-                StoreCard(
-                  leadingImage: 'assets/images/icons/car.png',
-                  name: 'Elphas Auto Garage',
-                  description: 'We sell all kinds of Electricals',
-                  delivery: 'We deliver country-wide',
-                  address: 'Kiambu Road, next to Thindigua Ridges',
-                  iconPaths: [
-                    'assets/images/icons/tiktok.png',
-                    'assets/images/icons/whatsapp_business.png',
-                    'assets/images/icons/grid.png',
-                    'assets/images/icons/call.png',
-                    'assets/images/icons/location.png',
-                  ],
-                  onFollow: () {},
-                ),
-                StoreCard(
-                  leadingImage: 'assets/images/icons/house.png',
-                  name: 'Muga Estate Agents',
-                  description: 'We help you get a house in any neighbourhood',
-                  delivery: 'We also sell properties -',
-                  address: '2nd Flor, shop 205, Majiwa building, Moi Avenue',
-                  iconPaths: [
-                    'assets/images/icons/tiktok.png',
-                    'assets/images/icons/whatsapp_business.png',
-                    'assets/images/icons/grid.png',
-                    'assets/images/icons/call.png',
-                    'assets/images/icons/location.png',
-                  ],
-                  onFollow: () {},
-                ),
-                StoreCard(
-                  leadingImage: 'assets/images/icons/shoppingcart.png',
-                  name: 'Maduri General supplies',
-                  description: 'We sell all kind of household items',
-                  delivery: 'We deliver country-wide',
-                  address: 'Kamukunji, Business Centre, Kamukunji',
-                  iconPaths: [
-                    'assets/images/icons/tiktok.png',
-                    'assets/images/icons/whatsapp_business.png',
-                    'assets/images/icons/grid.png',
-                    'assets/images/icons/call.png',
-                    'assets/images/icons/location.png',
-                  ],
-                  onFollow: () {},
-                ),
-              ],
+              children: selectedTabIndex == 0
+                  ? [
+                      StoreCard(
+                        leadingImage: 'assets/images/icons/phone.png',
+                        name: 'Jamo Electronic Shop',
+                        description: 'We sell all kinds of Electricals',
+                        delivery: 'We deliver country-wide',
+                        address:
+                            '2nd Flor, shop 205, Majiwa building, Moi Avenue',
+                        iconPaths: [
+                          'assets/images/icons/tiktok.png',
+                          'assets/images/icons/whatsapp_business.png',
+                          'assets/images/icons/grid.png',
+                          'assets/images/icons/call.png',
+                          'assets/images/icons/location.png',
+                        ],
+                        onFollow: () {},
+                      ),
+                      StoreCard(
+                        leadingImage: 'assets/images/icons/dress.png',
+                        name: 'Eliza Closet',
+                        description:
+                            'Your one online store for thrifted mtumba',
+                        delivery: 'We deliver country-wide',
+                        address: 'We operate online, no physical shop',
+                        iconPaths: [
+                          'assets/images/icons/tiktok.png',
+                          'assets/images/icons/whatsapp_business.png',
+                          'assets/images/icons/grid.png',
+                          'assets/images/icons/call.png',
+                          'assets/images/icons/location.png',
+                        ],
+                        onFollow: () {},
+                      ),
+                      StoreCard(
+                        leadingImage: 'assets/images/icons/car.png',
+                        name: 'Elphas Auto Garage',
+                        description: 'We sell all kinds of Electricals',
+                        delivery: 'We deliver country-wide',
+                        address: 'Kiambu Road, next to Thindigua Ridges',
+                        iconPaths: [
+                          'assets/images/icons/tiktok.png',
+                          'assets/images/icons/whatsapp_business.png',
+                          'assets/images/icons/grid.png',
+                          'assets/images/icons/call.png',
+                          'assets/images/icons/location.png',
+                        ],
+                        onFollow: () {},
+                      ),
+                      StoreCard(
+                        leadingImage: 'assets/images/icons/house.png',
+                        name: 'Muga Estate Agents',
+                        description:
+                            'We help you get a house in any neighbourhood',
+                        delivery: 'We also sell properties -',
+                        address:
+                            '2nd Flor, shop 205, Majiwa building, Moi Avenue',
+                        iconPaths: [
+                          'assets/images/icons/tiktok.png',
+                          'assets/images/icons/whatsapp_business.png',
+                          'assets/images/icons/grid.png',
+                          'assets/images/icons/call.png',
+                          'assets/images/icons/location.png',
+                        ],
+                        onFollow: () {},
+                      ),
+                      StoreCard(
+                        leadingImage: 'assets/images/icons/shoppingcart.png',
+                        name: 'Maduri General supplies',
+                        description: 'We sell all kind of household items',
+                        delivery: 'We deliver country-wide',
+                        address: 'Kamukunji, Business Centre, Kamukunji',
+                        iconPaths: [
+                          'assets/images/icons/tiktok.png',
+                          'assets/images/icons/whatsapp_business.png',
+                          'assets/images/icons/grid.png',
+                          'assets/images/icons/call.png',
+                          'assets/images/icons/location.png',
+                        ],
+                        onFollow: () {},
+                      ),
+                    ]
+                  : [
+                      StoreCard(
+                        leadingImage: 'assets/images/icons/bankcards.png',
+                        name: 'Business Bankers',
+                        description: 'Business banking services',
+                        delivery: 'We deliver business solutions',
+                        address: '1st Floor, Business Plaza',
+                        iconPaths: [
+                          'assets/images/icons/tiktok.png',
+                          'assets/images/icons/whatsapp_business.png',
+                          'assets/images/icons/grid.png',
+                          'assets/images/icons/call.png',
+                          'assets/images/icons/location.png',
+                        ],
+                        onFollow: () {},
+                      ),
+                      StoreCard(
+                        leadingImage: 'assets/images/icons/profile.png',
+                        name: 'BizPro Solutions',
+                        description: 'Professional business support',
+                        delivery: 'Nationwide business support',
+                        address: '2nd Floor, Biz Center',
+                        iconPaths: [
+                          'assets/images/icons/tiktok.png',
+                          'assets/images/icons/whatsapp_business.png',
+                          'assets/images/icons/grid.png',
+                          'assets/images/icons/call.png',
+                          'assets/images/icons/location.png',
+                        ],
+                        onFollow: () {},
+                      ),
+                    ],
             ),
           ),
         ],
       ),
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 24),
-        child: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: Colors.black,
-          elevation: 0,
-          child: Image.asset('assets/images/icons/add.png',
-              width: 28, height: 28, color: Colors.white),
+      floatingActionButton: Image.asset(
+          'assets/images/icons/add.png',
+          width: 60,
+          height: 60,
         ),
-      ),
+      
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
